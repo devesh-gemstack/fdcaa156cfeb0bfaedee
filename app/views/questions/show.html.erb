@@ -1,0 +1,30 @@
+<%= @que.question %>
+	<%debugger%>
+
+    <% if current_user.followees.include?(@que.user) %>
+        <h5><%= button_to "Unfollow", unfollow_user_path, method: "POST" %></h5>
+    <% else %>
+        <h5><%= button_to "Follow", follow_user_path, method: "POST"  %></h5>
+    <% end%>
+
+
+
+
+<% @answers.each do |ans|%>
+<p>
+	<%= ans.answer%> <br> submitted by: <%= User.find_by(id: ans.user_id).email %> 
+</p>
+<%end %>
+
+<%= form_for @answer, local: true do |form| %>
+    <%= form.hidden_field :question_id, value: "#{@que.id}"  %>
+  <p>
+    <%= form.label :answer %><br>
+    <%= form.text_field :answer %>
+  </p>
+
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

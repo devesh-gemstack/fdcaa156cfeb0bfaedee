@@ -1,0 +1,11 @@
+<h1>Questions</h1>
+
+<%= link_to 'Add Question', new_question_path %>
+</p>
+
+<% @ques.each do |que| %>
+<p>
+	<%=link_to "#{que.question}", question_path(que.id)  %>
+</p>
+
+<%end%>
